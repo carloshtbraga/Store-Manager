@@ -63,7 +63,7 @@ describe("Teste de unidade do products no Controller", function () {
 
     expect(res.status).to.have.been.calledWith(404);
 
-    expect(res.json).to.have.been.calledWith("Product not found");
+    expect(res.json).to.have.been.calledWith({ message: "Product not found" });
   });
 
   afterEach(function () {

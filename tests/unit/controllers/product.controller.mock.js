@@ -1,6 +1,5 @@
 const productMock = {
   name: "Martelo de Thor",
-  id:1
 };
 
 const newProductMock = { id: 1, ...productMock };

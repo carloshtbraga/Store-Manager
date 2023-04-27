@@ -1,14 +1,14 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
-const { getAllResultMock } = require("./product.service.mocks");
+const { getAllResultMock, getAllResultMock2 } = require("./product.service.mocks");
 const { productsModel } = require("../../../src/models");
 const { productsService } = require("../../../src/services");
 
 describe("Testes de unidade do service de products", function () {
   it("Mostra todos os produtos", async function () {
-    sinon.stub(productsModel, "getAllProducts").resolves(getAllResultMock);
+    sinon.stub(productsModel, "getAllProducts").resolves(getAllResultMock2);
     const result = await productsService.getAllProducts();
-    expect(result.message).to.deep.equal(getAllResultMock);
+    expect(result.message).to.deep.equal(getAllResultMock2);
   });
 
   it("Mostra o produto buscado pelo ID", async function () {
@@ -22,7 +22,7 @@ describe("Testes de unidade do service de products", function () {
     sinon.stub(productsModel, "getProductFromId").resolves(undefined);
     const result = await productsService.getProductFromId(15)
     expect(result.type).to.equal('PRODUCT_NOT_FOUND');
-    expect(result.message.message).to.equal('Product not found');
+    expect(result.message).to.equal('Product not found');
   });
 });
 
