@@ -4,13 +4,18 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost:3001/products",
-    "url": "http://localhost:3001/products/4",
+    "url": "http://localhost:3001/products",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-04-27T00:38:35.360Z",
-    "modified": "2023-04-27T00:50:36.045Z",
+    "modified": "2023-04-27T12:30:58.179Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"hahaha\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -33,12 +38,17 @@
     "containerId": "",
     "name": "http://localhost:3001/products",
     "url": "http://localhost:3001/products",
-    "method": "GET",
+    "method": "POST",
     "sortNum": 0,
     "created": "2023-04-27T00:56:44.282Z",
-    "modified": "2023-04-27T00:56:44.282Z",
+    "modified": "2023-04-27T02:17:36.983Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Halalala\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

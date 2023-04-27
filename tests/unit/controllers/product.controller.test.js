@@ -7,7 +7,10 @@ chai.use(sinonChai);
 
 const { productsService } = require("../../../src/services");
 const { productsController } = require("../../../src/controllers");
-const { productsListMock, newProductMock } = require("./product.controller.mock");
+const {
+  productsListMock,
+  newProductMock,
+} = require("./product.controller.mock");
 
 describe("Teste de unidade do products no Controller", function () {
   it("Deve retornar o status 200 e a lista de todos produtos", async function () {
@@ -26,28 +29,24 @@ describe("Teste de unidade do products no Controller", function () {
     expect(res.json).to.have.been.calledWith(productsListMock);
   });
 
-  describe("Buscando um produto por ID", function () {
-    it("Deve ter status 200 e mostrar o produto se tudo der certo", async function () {
-      const res = {};
-      const req = {
-        params: { id: 1 },
-      };
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
-      sinon
-        .stub(productsService, "getProductFromId")
-        .resolves({ type: null, message: newProductMock });
+  it("Deve ter status 200 e mostrar o produto se tudo der certo", async function () {
+    const res = {};
+    const req = {
+      params: { id: 1 },
+    };
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon
+      .stub(productsService, "getProductFromId")
+      .resolves({ type: null, message: newProductMock });
 
-      await productsController.getProductFromId(req, res);
+    await productsController.getProductFromId(req, res);
 
-
-      expect(res.status).to.have.been.calledWith(200);
-      expect(res.json).to.have.been.calledWith(newProductMock);
-    });
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(newProductMock);
   });
 
   it("Ao passar um id de produto que não existe no banco deve retornar um erro", async function () {
-
     const res = {};
     const req = {
       params: { id: 9999 },
@@ -55,12 +54,10 @@ describe("Teste de unidade do products no Controller", function () {
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
-     sinon
-      .stub(productsService, "getProductFromId")
-      .resolves({
-        type: "PRODUCT_NOT_FOUND",
-        message: "Product not found",
-      });
+    sinon.stub(productsService, "getProductFromId").resolves({
+      type: "PRODUCT_NOT_FOUND",
+      message: "Product not found",
+    });
 
     await productsController.getProductFromId(req, res);
 
