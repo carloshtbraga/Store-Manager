@@ -9,7 +9,6 @@ const getSalesFromId = async (req, res) => {
   const id = Number(req.params.id);
   const { type, message } = await salesService.getSaleFromId(id);
   if (type) return res.status(404).json({ message });
-  console.log('MESSAGECONTROLLER', message);
   res.status(200).json(message);
 };
 

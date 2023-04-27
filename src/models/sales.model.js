@@ -17,7 +17,6 @@ JOIN StoreManager.sales AS s ON sp.sale_id = s.id
 WHERE id = ?;`,
     [id],
   );
-  console.log('IDDDDDDDD', sale);
   return sale;
 };
 
