@@ -19,7 +19,6 @@ const updateSaleValidation = async (req, res, next) => {
   
   const productIdisValid = (await Promise
     .all(sale.map((e) => getProductFromId(e.productId)))).every((e) => e !== undefined);
-  console.log(productIdisValid);
 
   if (!productIdisValid) return res.status(404).json({ message: 'Product not found' });
 
@@ -29,7 +28,6 @@ const updateSaleValidation = async (req, res, next) => {
 const updateSaleValidation2 = (async (req, res, next) => {
     const id = Number(req.params.id);
     const saleIdValid = await getSaleFromId(id);
-    console.log(saleIdValid);
 
   if (saleIdValid.length === 0) {
  return res.status(404).json({ message: 'Sale not found' }); 
