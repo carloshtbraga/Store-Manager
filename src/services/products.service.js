@@ -21,11 +21,18 @@ const insertProduct = async (name) => {
 
 const updateProduct = async (id, name) => {
   const result = await productsModel.updateProduct(id, name);
-  console.log('weee', result);
   if (result[0].affectedRows === 0) {
     return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
   }  
   return { type: null, message: { id, name } }; 
+};
+
+const deleteProduct = async (id) => {
+  const result = await productsModel.deleteProduct(id);
+  if (result[0].affectedRows === 0) {
+    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  }
+  return { type: null };
 };
 
 module.exports = {
@@ -33,4 +40,5 @@ module.exports = {
   getProductFromId,
   insertProduct,
   updateProduct,
+  deleteProduct,
 };
