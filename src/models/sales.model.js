@@ -20,7 +20,33 @@ WHERE id = ?;`,
   return sale;
 };
 
+const deleteSales = async (saleId) => {
+  const result = await connection.execute(
+    `DELETE StoreManager.sales, StoreManager.sales_products
+FROM StoreManager.sales
+JOIN StoreManager.sales_products ON StoreManager.sales.id = StoreManager.sales_products.sale_id
+WHERE StoreManager.sales.id = ?;
+`,
+    [saleId],
+  );
+  return result;
+};
+
+const updateSale = async (sale, saleId) => {
+  const result = await connection.execute(
+    `UPDATE StoreManager.sales_products
+    JOIN StoreManager.sales ON StoreManager.sales.id = StoreManager.sales_products.sale_id
+    SET StoreManager.sales_products.quantity = ?,
+        StoreManager.sales.date = NOW()
+    WHERE StoreManager.sales.id = ? AND StoreManager.sales_products.product_id = ?;`,
+    [sale.quantity, saleId, sale.productId],
+  );
+  return result;
+};
+
 module.exports = {
   getAllSales,
   getSaleFromId,
+  deleteSales,
+  updateSale,
 };

@@ -27,7 +27,27 @@ const getSaleFromId = async (id) => {
   return { type: null, message: workedSalesFromId };
 };
 
+const deleteSale = async (id) => {
+  const result = await salesModel.deleteSales(id);
+  if (result[0].affectedRows === 0) {
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  }
+  return { type: null };
+};
+
+const updateSale = async (sale, saleId) => {
+  await sale.map((e) => salesModel.updateSale(e, saleId));
+  const objt = {
+    saleId,
+    itemsUpdated: sale,
+
+  };
+  return { type: null, message: objt };
+};
+
 module.exports = {
   getAllSales,
   getSaleFromId,
+  deleteSale,
+updateSale,
 };
