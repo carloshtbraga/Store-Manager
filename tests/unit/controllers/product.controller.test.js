@@ -66,6 +66,18 @@ describe("Teste de unidade do products no Controller", function () {
     expect(res.json).to.have.been.calledWith({ message: "Product not found" });
   });
 
+  it("Adicionar produto", async function () {
+    const req = { body: { name: "Carlos" } };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon.stub(productsService, "insertProduct").resolves({ type: null, message: "Carlos" });
+
+    await productsController.insertProduct(req, res);
+
+    expect(res.json).to.have.been.calledWith("Carlos");   
+  });
+
   afterEach(function () {
     sinon.restore();
   });

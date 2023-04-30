@@ -24,6 +24,13 @@ describe("Testes de unidade do service de products", function () {
     expect(result.type).to.equal('PRODUCT_NOT_FOUND');
     expect(result.message).to.equal('Product not found');
   });
+
+
+ it("Adicionar produto", async function () {
+   sinon.stub(productsModel, "insertProduct").resolves(2);
+   const result = await productsService.insertProduct('Carlos');
+   expect(result.message).to.deep.equal({id: 2, name: 'Carlos'});
+ });
 });
 
 afterEach(function () {

@@ -12,7 +12,17 @@ const getAllResultMock = [
     name: "Escudo do Capitão América",
   },
 ];
+const modelMockInsert = {
+  name: "ProdutoX",
+};
+
+const modelMockInsertResult = {
+  id:5,
+  name: "ProdutoX",
+};
 
 module.exports = {
-  getAllResultMock
+  getAllResultMock,
+  modelMockInsert,
+  modelMockInsertResult
 }
