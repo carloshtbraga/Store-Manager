@@ -1,7 +1,7 @@
 const { getProductFromId } = require('../models/products.model');
 const { getSaleFromId } = require('../models/sales.model');
 
-const updateSaleValidation = async (req, res, next) => {
+const insertAndUpdateSaleValidation = async (req, res, next) => {
   const sale = req.body;
 
   const productId = sale.every((e) => e.productId);
@@ -36,6 +36,6 @@ const updateSaleValidation2 = (async (req, res, next) => {
 });
 
 module.exports = {
-  updateSaleValidation,
+  insertAndUpdateSaleValidation,
   updateSaleValidation2,
 };

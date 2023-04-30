@@ -1,5 +1,13 @@
 const { salesService } = require('../services');
 
+const insertSalesProduct = async (req, res) => {
+  const productsFromBody = req.body;
+  const { type, message } = await salesService.insertSalesProduct(productsFromBody);
+  if (type) return res.status(404).json(message);
+
+  res.status(201).json(message);
+};
+
 const getAllSales = async (_req, res) => {
  const { message } = await salesService.getAllSales();
   return res.status(200).json(message);
@@ -32,4 +40,5 @@ module.exports = {
   getSalesFromId,
   deleteSale,
   updateSale,
+  insertSalesProduct,
 };

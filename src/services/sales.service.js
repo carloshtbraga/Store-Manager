@@ -1,5 +1,14 @@
 const { salesModel } = require('../models');
 
+const insertSalesProduct = async (products) => {
+  const newSaleProduct = await salesModel.insertSaleProduct(products);
+  const workedNewSaleProduct = {
+  id: newSaleProduct[0],
+  itemsSold: newSaleProduct[1],
+  };
+  return { type: null, message: workedNewSaleProduct }; 
+};
+
 const getAllSales = async () => {
   const sales = await salesModel.getAllSales();
   const workedSales = sales.map((e) => ({
@@ -49,5 +58,6 @@ module.exports = {
   getAllSales,
   getSaleFromId,
   deleteSale,
-updateSale,
+  updateSale,
+insertSalesProduct,
 };

@@ -47,7 +47,6 @@ const searchQuery = async (q) => {
 `,
     [`%${q}%`],
   );
-  console.log(result);
   return result;
 };
 
