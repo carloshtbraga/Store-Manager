@@ -38,7 +38,8 @@ const updateSale = async (sale, saleId) => {
     JOIN StoreManager.sales ON StoreManager.sales.id = StoreManager.sales_products.sale_id
     SET StoreManager.sales_products.quantity = ?,
         StoreManager.sales.date = NOW()
-    WHERE StoreManager.sales.id = ? AND StoreManager.sales_products.product_id = ?;`,
+    WHERE StoreManager.sales.id = ? AND StoreManager.sales_products.product_id = ?;
+    `,
     [sale.quantity, saleId, sale.productId],
   );
   return result;
