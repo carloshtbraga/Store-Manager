@@ -78,6 +78,32 @@ describe("Teste de unidade do products no Controller", function () {
     expect(res.json).to.have.been.calledWith("Carlos");   
   });
 
+   it("Atualizar produto", async function () {
+     const req = {
+       body: {
+         name: "Martelo do Batman",
+       },
+      params: {id: 1}
+     };
+     const res = {};
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+    //  sinon.stub(productsService, "updateProduct").resolves({
+    //    type: null,
+    //    message: {
+    //      name: "Martelo do Batman",
+    //    },
+    //  });
+
+     await productsController.updateProduct(req, res);
+
+     expect(res.json).to.have.been.calledWith({
+       id: 1,
+       name: "Martelo do Batman",
+     });
+   });
+
+
   afterEach(function () {
     sinon.restore();
   });

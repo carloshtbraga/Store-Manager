@@ -11,7 +11,7 @@ const insertSalesProduct = async (products) => {
 
 const getAllSales = async () => {
   const sales = await salesModel.getAllSales();
-  const workedSales = sales.map((e) => ({
+  const workedSales = await sales.map((e) => ({
       saleId: e.sale_id,
       date: e.date,
       productId: e.product_id,
@@ -22,17 +22,17 @@ const getAllSales = async () => {
 
 const getSaleFromId = async (id) => {
   const sale = await salesModel.getSaleFromId(id);
-  const workedSalesFromId = sale.map((e) => ({
-    date: e.date,
-    productId: e.product_id,
-    quantity: e.quantity,
-  }));
   if (sale.length === 0) {
     return {
       type: 'SALE_NOT_FOUND',
       message: 'Sale not found',
     };
   }
+  const workedSalesFromId = sale.map((e) => ({
+    date: e.date,
+    productId: e.product_id,
+    quantity: e.quantity,
+  }));
   return { type: null, message: workedSalesFromId };
 };
 
